@@ -21,12 +21,9 @@ class Survey:
     M_deg_lon = 81637.0 # meters per degree of longitude a fn(latitude)    
     latitude = 0
     longitude = 0
-    dd = 0
-    #declination
-    history = [] 
-    #http://www.ngdc.noaa.gov/geomag-web/#declination
-    declination = -12.61 #2013-07-18 12.61° W-- calculated from their API
-    #fudge = 1.2
+    dd = 0 #decimal degrees
+    declination = 0
+    history = []  #a list of tuples; appended with coordinates of points when pen is down
     penDownState = False    
     
     
@@ -36,7 +33,7 @@ class Survey:
         try:        
             self.declination = declination.calc_declination(longitude,latitude,2013)
         except:
-            print ("WARNING: using 0 delination value: ",self.declination)            
+            print ("WARNING: using 0 degrees as the delination value: ",self.declination)            
         
         #print (self.declination)
         self.declination += anglefudge
